@@ -1,0 +1,113 @@
+package app;
+
+import exceptions.*;
+
+public class Time {
+
+    private String nome;
+    private int pontos;
+    private int nVitorias;
+    private int golsMarcados;
+    private int golsSofridos;
+
+    public Time(String nome) throws NomeVazioException {
+        if (nome == null || nome.isEmpty()) {
+            throw new NomeVazioException();
+        }
+        this.nome = nome;
+        this.pontos = 0;
+        this.nVitorias = 0;
+        this.golsMarcados = 0;
+        this.golsSofridos = 0;
+    }
+
+    public void registrarVitoria(int golsPro, int golsContra){
+        this.pontos += 3;
+        this.nVitorias += 1;
+        this.golsMarcados += golsPro;
+        this.golsSofridos += golsContra;
+    }
+
+    public void registrarEmpate(int gols) throws TipoInvalidoException {
+        if (gols < 0) {
+            throw new TipoInvalidoException();
+        }
+        this.pontos += 1;
+        this.golsMarcados += gols;
+        this.golsSofridos += gols;
+    }
+    
+    public void registrarDerrota(int golsPro, int golsContra) throws TipoInvalidoException  {
+        validarGols(golsPro, golsContra);
+        if (golsPro >= golsContra) {
+            throw new TipoInvalidoException();
+        }
+        this.golsMarcados += golsPro;
+        this.golsSofridos += golsContra;
+    }
+
+    private void validarGols(int golsPro, int golsContra) throws TipoInvalidoException  {
+        if (golsPro < 0 || golsContra < 0) {
+            throw new TipoInvalidoException ();
+        }
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) throws TipoInvalidoException {
+        if (nome == null || nome.trim().isEmpty()) {
+            throw new TipoInvalidoException();
+        }
+        this.nome = nome.trim();
+    }
+
+    public int getPontos() {
+        return pontos;
+    }
+
+    public void setPontos(int pontos) throws TipoInvalidoException {
+        if (pontos < 0) {
+            throw new TipoInvalidoException();
+        }
+        this.pontos = pontos;
+    }
+
+    public int getnVitorias() {
+        return nVitorias;
+    }
+
+    public void setnVitorias(int nVitorias) throws TipoInvalidoException {
+        if (nVitorias < 0) {
+            throw new TipoInvalidoException();
+        }
+        this.nVitorias = nVitorias;
+    }
+
+    public int getGolsMarcados() {
+        return golsMarcados;
+    }
+
+    public void setGolsMarcados(int golsMarcados) throws TipoInvalidoException {
+        if (golsMarcados < 0) {
+            throw new TipoInvalidoException();
+        }
+        this.golsMarcados = golsMarcados;
+    }
+
+    public int getGolsSofridos() {
+        return golsSofridos;
+    }
+
+    public void setGolsSofridos(int golsSofridos) throws TipoInvalidoException {
+        if (golsSofridos < 0) {
+            throw new TipoInvalidoException();
+        }
+        this.golsSofridos = golsSofridos;
+    }
+
+    public int getSaldoGols() {
+        return this.golsMarcados - this.golsSofridos;
+    }
+}
