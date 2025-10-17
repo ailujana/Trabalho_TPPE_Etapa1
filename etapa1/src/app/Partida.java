@@ -1,115 +1,134 @@
 package app;
 
-public class Partida {
-	/*
-    public static void main(String[] args) {
-        System.out.println("Hello World!");
-    }*/
-	private String timeMandante, timeVisitante;
-	private int golsMandanteMarcado, golsMandanteSofrido, golsVisitanteMarcado, golsVisitanteSofrido, saldoGolsMandante, saldoGolsVisitante, cartaoVermelhoMandate, cartaoAmareloMandante, cartaoVermelhoVisitante, cartaoAmareloVisitante;
-	private boolean mandanteGanhou;
-	
-	public Partida(String timeMandante, String timeVisitante, int golsMandanteMarcado, int golsMandanteSofrido,
-			int golsVisitanteMarcado, int golsVisitanteSofrido, int saldoGolsMandante, int saldoGolsVisitante,
-			int cartaoVermelhoMandate, int cartaoAmareloMandante, int cartaoVermelhoVisitante,
-			int cartaoAmareloVisitante) {
-		super();
-		this.timeMandante = timeMandante;
-		this.timeVisitante = timeVisitante;
-		this.golsMandanteMarcado = golsMandanteMarcado;
-		this.golsMandanteSofrido = golsMandanteSofrido;
-		this.golsVisitanteMarcado = golsVisitanteMarcado;
-		this.golsVisitanteSofrido = golsVisitanteSofrido;
-		this.saldoGolsMandante = golsMandanteMarcado - golsMandanteSofrido;
-		this.saldoGolsVisitante = golsVisitanteMarcado - golsVisitanteSofrido;
-		this.cartaoVermelhoMandate = cartaoVermelhoMandate;
-		this.cartaoAmareloMandante = cartaoAmareloMandante;
-		this.cartaoVermelhoVisitante = cartaoVermelhoVisitante;
-		this.cartaoAmareloVisitante = cartaoAmareloVisitante;
-	}
-	public String getTimeMandante() {
-		return timeMandante;
-	}
-	public void setTimeMandante(String timeMandante) {
-		this.timeMandante = timeMandante;
-	}
-	public String getTimeVisitante() {
-		return timeVisitante;
-	}
-	public void setTimeVisitante(String timeVisitante) {
-		this.timeVisitante = timeVisitante;
-	}
-	public int getGolsMandanteMarcado() {
-		return golsMandanteMarcado;
-	}
-	public void setGolsMandanteMarcado(int golsMandanteMarcado) {
-		this.golsMandanteMarcado = golsMandanteMarcado;
-	}
-	public int getGolsMandanteSofrido() {
-		return golsMandanteSofrido;
-	}
-	public void setGolsMandanteSofrido(int golsMandanteSofrido) {
-		this.golsMandanteSofrido = golsMandanteSofrido;
-	}
-	public int getGolsVisitanteMarcado() {
-		return golsVisitanteMarcado;
-	}
-	public void setGolsVisitanteMarcado(int golsVisitanteMarcado) {
-		this.golsVisitanteMarcado = golsVisitanteMarcado;
-	}
-	public int getGolsVisitanteSofrido() {
-		return golsVisitanteSofrido;
-	}
-	public void setGolsVisitanteSofrido(int golsVisitanteSofrido) {
-		this.golsVisitanteSofrido = golsVisitanteSofrido;
-	}
-	public int getSaldoGolsMandante() {
-		return saldoGolsMandante;
-	}
-	public void setSaldoGolsMandante(int saldoGolsMandante) {
-		this.saldoGolsMandante = saldoGolsMandante;
-	}
-	public int getSaldoGolsVisitante() {
-		return saldoGolsVisitante;
-	}
-	public void setSaldoGolsVisitante(int saldoGolsVisitante) {
-		this.saldoGolsVisitante = saldoGolsVisitante;
-	}
-	public int getCartaoVermelhoMandate() {
-		return cartaoVermelhoMandate;
-	}
-	public void setCartaoVermelhoMandate(int cartaoVermelhoMandate) {
-		this.cartaoVermelhoMandate = cartaoVermelhoMandate;
-	}
-	public int getCartaoAmareloMandante() {
-		return cartaoAmareloMandante;
-	}
-	public void setCartaoAmareloMandante(int cartaoAmareloMandante) {
-		this.cartaoAmareloMandante = cartaoAmareloMandante;
-	}
-	public int getCartaoVermelhoVisitante() {
-		return cartaoVermelhoVisitante;
-	}
-	public void setCartaoVermelhoVisitante(int cartaoVermelhoVisitante) {
-		this.cartaoVermelhoVisitante = cartaoVermelhoVisitante;
-	}
-	public int getCartaoAmareloVisitante() {
-		return cartaoAmareloVisitante;
-	}
-	public void setCartaoAmareloVisitante(int cartaoAmareloVisitante) {
-		this.cartaoAmareloVisitante = cartaoAmareloVisitante;
-	}
-	public boolean isMandanteGanhou() {
-		return mandanteGanhou;
-	}
-	public void setMandanteGanhou(boolean mandanteGanhou) {
-		this.mandanteGanhou = mandanteGanhou;
-	}
-	
-	
-	
-	
-	
-	
+import exceptions.PartidaInvalidaException;
 
+public final class Partida {
+
+  public enum Resultado { VITORIA_MANDANTE, EMPATE, VITORIA_VISITANTE }
+  public enum Status { AGENDADO, JOGADO }
+
+  private final int idRodada;
+  private final String mandante;
+  private final String visitante;
+  private final int golsMandante;
+  private final int golsVisitante;
+  private final Status status;
+
+  private Partida(int idRodada, String mandante, String visitante,
+                  int golsMandante, int golsVisitante, Status status) {
+
+    if (mandante == null || mandante.trim().isEmpty())
+      throw new PartidaInvalidaException("Mandante inválido");
+    if (visitante == null || visitante.trim().isEmpty())
+      throw new PartidaInvalidaException("Visitante inválido");
+
+    String m = mandante.trim();
+    String v = visitante.trim();
+
+    if (m.equalsIgnoreCase(v))
+      throw new PartidaInvalidaException("Mandante não pode ser igual ao visitante");
+
+    if (idRodada <= 0)
+      throw new PartidaInvalidaException("idRodada inválido");
+
+    if (status == Status.JOGADO) {
+      if (golsMandante < 0 || golsVisitante < 0)
+        throw new PartidaInvalidaException("Gols não podem ser negativos");
+    }
+
+    this.idRodada = idRodada;
+    this.mandante = m;
+    this.visitante = v;
+    this.golsMandante = golsMandante;
+    this.golsVisitante = golsVisitante;
+    this.status = status;
+  }
+
+  // Partida já jogada 
+  public static Partida of(int idRodada, String mandante, String visitante, int golsMandante, int golsVisitante) {
+    return new Partida(idRodada, mandante, visitante, golsMandante, golsVisitante, Status.JOGADO);
+  }
+
+  // Partida apenas agendada, gols como 0
+  public static Partida agendada(int idRodada, String mandante, String visitante) {
+    return new Partida(idRodada, mandante, visitante, 0, 0, Status.AGENDADO);
+  }
+
+  public int getIdRodada() { 
+	  return idRodada; 
+  }
+  
+  public String getMandante() { 
+	  return mandante; 
+  }
+  
+  public String getVisitante() { 
+	  return visitante; 
+  }
+  
+  public int getGolsMandante() {
+	  return golsMandante; 
+  }
+  
+  public int getGolsVisitante() { 
+	  return golsVisitante; 
+  }
+  
+  public Status getStatus() { 
+	  return status; 
+  }
+  
+  public boolean isAgendado() {
+	  return status == Status.AGENDADO;
+  }
+  
+  public boolean isJogado() {
+	  return status == Status.JOGADO;
+  }
+
+  public Resultado getResultado() {
+    garantirJogado("resultado");
+    if (golsMandante > golsVisitante) return Resultado.VITORIA_MANDANTE;
+    if (golsMandante < golsVisitante) return Resultado.VITORIA_VISITANTE;
+    return Resultado.EMPATE;
+  }
+
+  public boolean isEmpate() {
+    garantirJogado("empate");
+    return golsMandante == golsVisitante;
+  }
+
+  public boolean mandanteVenceu() {
+    garantirJogado("mandanteVenceu");
+    return golsMandante > golsVisitante;
+  }
+
+  public boolean visitanteVenceu() {
+    garantirJogado("visitanteVenceu");
+    return golsVisitante > golsMandante;
+  }
+
+  public int saldoMandante() {
+    garantirJogado("saldoMandante");
+    return golsMandante - golsVisitante;
+  }
+
+  public interface TabelaAdapter {
+    void registrarPartidaResultado(String mand, String vist, int golsMandante, int golsVisitante);
+  }
+
+  public void aplicarNaTabela(TabelaAdapter tabela) {
+    garantirJogado("aplicarNaTabela");
+    tabela.registrarPartidaResultado(mandante, visitante, golsMandante, golsVisitante);
+  }
+
+  public String chave() {
+    return mandante + "->" + visitante;
+  }
+
+  private void garantirJogado(String metodo) {
+    if (status != Status.JOGADO) {
+      throw new IllegalStateException("Partida ainda não foi jogada: operação '" + metodo + "' indisponível");
+    }
+  }
 }
