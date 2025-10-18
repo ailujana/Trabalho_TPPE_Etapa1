@@ -13,6 +13,7 @@ import org.junit.runners.Parameterized.Parameters;
 import app.Time;
 import exceptions.TipoInvalidoException;
 
+@Category(Funcional.class)
 @RunWith(Parameterized.class)
 public class TstPontuacao extends TstBasePontuacao {
 

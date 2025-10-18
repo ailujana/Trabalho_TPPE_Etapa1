@@ -3,9 +3,13 @@ package tst;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import app.Partida;
+import app.Time;
+import exceptions.NomeVazioException;
 
+@Category(Funcional.class)
 public class tstAplicarPartidaNaTabela {
 
   private static class FakeTabela {
@@ -16,8 +20,8 @@ public class tstAplicarPartidaNaTabela {
   }
 
   @Test
-  public void aplicaNaTabelaChamaRegistrarComMesmosDados() {
-    Partida p = Partida.of(5, "Corinthians", "Palmeiras", 3, 2);
+  public void aplicaNaTabelaChamaRegistrarComMesmosDados() throws NomeVazioException {
+    Partida p = Partida.of(5, new Time("Corinthians"), new Time("Palmeiras"), 3, 2);
     FakeTabela fake = new FakeTabela();
 
     p.aplicarNaTabela(new Partida.TabelaAdapter() {

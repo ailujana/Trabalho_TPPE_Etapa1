@@ -5,12 +5,17 @@ import static org.junit.Assert.*;
 import java.util.Arrays;
 
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import app.Partida;
+import app.Time;
+import exceptions.NomeVazioException;
 
+
+@Category(Funcional.class)
 @RunWith(Parameterized.class)
 public class tstPartidaResultado {
 
@@ -37,8 +42,8 @@ public class tstPartidaResultado {
   }
 
   @Test
-  public void testaResultadoEAuxiliares() {
-    Partida p = Partida.of(1, "Flamengo", "Vasco", gm, gv);
+  public void testaResultadoEAuxiliares() throws NomeVazioException {
+    Partida p = Partida.of(1,  new Time("Flamengo"), new Time("Vasco"), gm, gv);
     assertEquals(esperado, p.getResultado());
     assertEquals(empate, p.isEmpate());
     assertEquals(mandanteVenceu, p.mandanteVenceu());

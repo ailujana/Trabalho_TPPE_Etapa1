@@ -8,24 +8,21 @@ public final class Partida {
   public enum Status { AGENDADO, JOGADO }
 
   private final int idRodada;
-  private final String mandante;
-  private final String visitante;
+  private final Time mandante;
+  private final Time visitante;
   private final int golsMandante;
   private final int golsVisitante;
   private final Status status;
 
-  private Partida(int idRodada, String mandante, String visitante,
+  private Partida(int idRodada, Time mandante, Time visitante,
                   int golsMandante, int golsVisitante, Status status) {
 
-    if (mandante == null || mandante.trim().isEmpty())
+    if (mandante == null )
       throw new PartidaInvalidaException("Mandante inválido");
-    if (visitante == null || visitante.trim().isEmpty())
+    if (visitante == null )
       throw new PartidaInvalidaException("Visitante inválido");
 
-    String m = mandante.trim();
-    String v = visitante.trim();
-
-    if (m.equalsIgnoreCase(v))
+    if (mandante.getNome().toLowerCase().equals(visitante.getNome().toLowerCase()))
       throw new PartidaInvalidaException("Mandante não pode ser igual ao visitante");
 
     if (idRodada <= 0)
@@ -37,32 +34,32 @@ public final class Partida {
     }
 
     this.idRodada = idRodada;
-    this.mandante = m;
-    this.visitante = v;
+    this.mandante = mandante;
+    this.visitante = visitante;
     this.golsMandante = golsMandante;
     this.golsVisitante = golsVisitante;
     this.status = status;
   }
 
   // Partida já jogada 
-  public static Partida of(int idRodada, String mandante, String visitante, int golsMandante, int golsVisitante) {
+  public static Partida of(int idRodada, Time mandante, Time visitante, int golsMandante, int golsVisitante) {
     return new Partida(idRodada, mandante, visitante, golsMandante, golsVisitante, Status.JOGADO);
   }
 
   // Partida apenas agendada, gols como 0
-  public static Partida agendada(int idRodada, String mandante, String visitante) {
+  public static Partida agendada(int idRodada, Time mandante, Time visitante) {
     return new Partida(idRodada, mandante, visitante, 0, 0, Status.AGENDADO);
   }
 
   public int getIdRodada() { 
 	  return idRodada; 
   }
-  
-  public String getMandante() { 
+
+  public Time getMandante() { 
 	  return mandante; 
   }
   
-  public String getVisitante() { 
+  public Time getVisitante() { 
 	  return visitante; 
   }
   
@@ -119,11 +116,11 @@ public final class Partida {
 
   public void aplicarNaTabela(TabelaAdapter tabela) {
     garantirJogado("aplicarNaTabela");
-    tabela.registrarPartidaResultado(mandante, visitante, golsMandante, golsVisitante);
+    tabela.registrarPartidaResultado(mandante.getNome(), visitante.getNome(), golsMandante, golsVisitante);
   }
 
   public String chave() {
-    return mandante + "->" + visitante;
+    return mandante.getNome() + "->" + visitante.getNome();
   }
 
   private void garantirJogado(String metodo) {
