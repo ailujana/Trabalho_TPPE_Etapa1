@@ -15,7 +15,8 @@ import org.junit.runners.Suite.SuiteClasses;
     tstPartidaExcecao.class, 
     tstPartidaResultado.class,
     TstPontuacao.class,
-    TstSorteioRodada.class
+    TstSorteioRodada.class,
+    tstRanking.class
 })
 public class AllTests { 
     
