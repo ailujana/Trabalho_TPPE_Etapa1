@@ -16,7 +16,7 @@ import exceptions.NumeroInvalidoException;
 import exceptions.TipoInvalidoException;
 
 @Category(Funcional.class)
-public class tstRanking extends TstTimes{
+public class tstRanking {
     
     private Ranking ranking;
     private List<Time> times;
