@@ -28,27 +28,27 @@ public class Time {
         this.golsSofridos += golsContra;
     }
 
-    public void registrarEmpate(int gols) throws TipoInvalidoException {
+    public void registrarEmpate(int gols) throws TipoInvalidoException, NumeroInvalidoException{
         if (gols < 0) {
-            throw new TipoInvalidoException();
+            throw new NumeroInvalidoException();
         }
         this.pontos += 1;
         this.golsMarcados += gols;
         this.golsSofridos += gols;
     }
     
-    public void registrarDerrota(int golsPro, int golsContra) throws TipoInvalidoException  {
+    public void registrarDerrota(int golsPro, int golsContra) throws TipoInvalidoException, NumeroInvalidoException  {
         validarGols(golsPro, golsContra);
         if (golsPro >= golsContra) {
-            throw new TipoInvalidoException();
+            throw new NumeroInvalidoException();
         }
         this.golsMarcados += golsPro;
         this.golsSofridos += golsContra;
     }
 
-    private void validarGols(int golsPro, int golsContra) throws TipoInvalidoException  {
+    private void validarGols(int golsPro, int golsContra) throws TipoInvalidoException, NumeroInvalidoException  {
         if (golsPro < 0 || golsContra < 0) {
-            throw new TipoInvalidoException ();
+            throw new NumeroInvalidoException();
         }
     }
 
@@ -56,9 +56,9 @@ public class Time {
         return nome;
     }
 
-    public void setNome(String nome) throws TipoInvalidoException {
+    public void setNome(String nome) throws NomeVazioException {
         if (nome == null || nome.trim().isEmpty()) {
-            throw new TipoInvalidoException();
+            throw new NomeVazioException();
         }
         this.nome = nome.trim();
     }
@@ -67,9 +67,9 @@ public class Time {
         return pontos;
     }
 
-    public void setPontos(int pontos) throws TipoInvalidoException {
+    public void setPontos(int pontos) throws NumeroInvalidoException {
         if (pontos < 0) {
-            throw new TipoInvalidoException();
+            throw new NumeroInvalidoException();
         }
         this.pontos = pontos;
     }
@@ -78,9 +78,9 @@ public class Time {
         return nVitorias;
     }
 
-    public void setnVitorias(int nVitorias) throws TipoInvalidoException {
+    public void setnVitorias(int nVitorias) throws NumeroInvalidoException {
         if (nVitorias < 0) {
-            throw new TipoInvalidoException();
+            throw new NumeroInvalidoException();
         }
         this.nVitorias = nVitorias;
     }
@@ -89,9 +89,9 @@ public class Time {
         return golsMarcados;
     }
 
-    public void setGolsMarcados(int golsMarcados) throws TipoInvalidoException {
+    public void setGolsMarcados(int golsMarcados) throws NumeroInvalidoException {
         if (golsMarcados < 0) {
-            throw new TipoInvalidoException();
+            throw new NumeroInvalidoException();
         }
         this.golsMarcados = golsMarcados;
     }
@@ -100,9 +100,9 @@ public class Time {
         return golsSofridos;
     }
 
-    public void setGolsSofridos(int golsSofridos) throws TipoInvalidoException {
+    public void setGolsSofridos(int golsSofridos) throws NumeroInvalidoException {
         if (golsSofridos < 0) {
-            throw new TipoInvalidoException();
+            throw new NumeroInvalidoException();
         }
         this.golsSofridos = golsSofridos;
     }

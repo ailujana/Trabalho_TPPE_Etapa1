@@ -9,7 +9,6 @@ import org.junit.runners.Suite.SuiteClasses;
 @IncludeCategory({Funcional.class, Excecao.class}) 
 @SuiteClasses({ 
     tstAplicarPartidaNaTabela.class, 
-    TstBasePontuacao.class,
     TstExceptionRodada.class,
     TstJogoRepetidoRodada.class,
     tstPartidaExcecao.class, 

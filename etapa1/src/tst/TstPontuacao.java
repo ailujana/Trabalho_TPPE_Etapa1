@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
@@ -11,11 +12,19 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import app.Time;
+import exceptions.NomeVazioException;
+import exceptions.NumeroInvalidoException;
 import exceptions.TipoInvalidoException;
 
 @Category(Funcional.class)
 @RunWith(Parameterized.class)
-public class TstPontuacao extends TstBasePontuacao {
+public class TstPontuacao {
+    protected Time t;
+
+    @Before
+    public void setUp() throws NomeVazioException {
+        t = new Time("Fortaleza");
+    }
 
     char tipoResultado;
     int golsPro;
@@ -50,7 +59,7 @@ public class TstPontuacao extends TstBasePontuacao {
 
     @Test
     @Category(Funcional.class)
-    public void testaPontuacaoUnitario() throws TipoInvalidoException {
+    public void testaPontuacaoUnitario() throws NumeroInvalidoException, TipoInvalidoException {
         switch (tipoResultado) {
             case 'V':
                 t.registrarVitoria(golsPro, golsContraOuMesmo);
@@ -80,32 +89,32 @@ public class TstPontuacao extends TstBasePontuacao {
         assertEquals("Botafogo FR", t.getNome());
     }
 
-    @Test(expected = TipoInvalidoException.class)
-    public void setNomeVazioFalha() throws Exception {
+    @Test(expected = NomeVazioException.class)
+    public void setNomeVazioFalha() throws NomeVazioException {
         Time t = new Time("Criciuma");
         t.setNome("   ");
     }
 
-    @Test(expected = TipoInvalidoException.class)
-    public void setPontosNegativosFalha() throws Exception {
+    @Test(expected = NumeroInvalidoException.class)
+    public void setPontosNegativosFalha() throws NumeroInvalidoException, NomeVazioException {
         Time t = new Time("Bahia");
         t.setPontos(-1);
     }
 
-    @Test(expected = TipoInvalidoException.class)
-    public void setVitoriasNegativasFalha() throws Exception {
+    @Test(expected = NumeroInvalidoException.class)
+    public void setVitoriasNegativasFalha() throws NumeroInvalidoException, NomeVazioException {
         Time t = new Time("Athletico");
         t.setnVitorias(-1);
     }
 
-    @Test(expected = TipoInvalidoException.class)
-    public void setGolsMarcadosNegativoFalha() throws Exception {
+    @Test(expected = NumeroInvalidoException.class)
+    public void setGolsMarcadosNegativoFalha() throws NumeroInvalidoException, NomeVazioException {
         Time t = new Time("Goias");
         t.setGolsMarcados(-5);
     }
 
-    @Test(expected = TipoInvalidoException.class)
-    public void setGolsSofridosNegativoFalha() throws Exception {
+    @Test(expected = NumeroInvalidoException.class)
+    public void setGolsSofridosNegativoFalha() throws NumeroInvalidoException, NomeVazioException {
         Time t = new Time("Fortaleza");
         t.setGolsSofridos(-3);
     }

@@ -12,10 +12,11 @@ import org.junit.experimental.categories.Category;
 import app.Ranking;
 import app.Time;
 import exceptions.NomeVazioException;
+import exceptions.NumeroInvalidoException;
 import exceptions.TipoInvalidoException;
 
 @Category(Funcional.class)
-public class tstRanking {
+public class tstRanking extends TstTimes{
     
     private Ranking ranking;
     private List<Time> times;
@@ -31,7 +32,7 @@ public class tstRanking {
     }
     
     @Test
-    public void testaOrdenacaoPorPontos() throws TipoInvalidoException {
+    public void testaOrdenacaoPorPontos() throws TipoInvalidoException, NumeroInvalidoException {
         // Flamengo: 6 pontos
         times.get(0).registrarVitoria(2, 0);
         times.get(0).registrarVitoria(1, 0);
@@ -55,7 +56,7 @@ public class tstRanking {
     }
     
     @Test
-    public void testaDesempatePorVitorias() throws TipoInvalidoException {
+    public void testaDesempatePorVitorias() throws TipoInvalidoException, NumeroInvalidoException {
         // Ambos com 6 pontos, mas Flamengo com mais vitorias
         // Flamengo: 2 vitorias (6 pontos)
         times.get(0).registrarVitoria(2, 0);
