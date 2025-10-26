@@ -17,7 +17,7 @@ import exceptions.NomeVazioException;
 
 @Category(Funcional.class)
 @RunWith(Parameterized.class)
-public class tstPartidaResultado {
+public class TstPartidaResultado {
 
   private final int gm, gv;
   private final Partida.Resultado esperado;
@@ -25,7 +25,7 @@ public class tstPartidaResultado {
   private final boolean mandanteVenceu;
   private final int saldo;
 
-  public tstPartidaResultado(int gm, int gv,
+  public TstPartidaResultado(int gm, int gv,
       Partida.Resultado esperado, boolean empate, boolean mandanteVenceu, int saldo) {
     this.gm = gm; this.gv = gv;
     this.esperado = esperado; this.empate = empate;

@@ -8,14 +8,13 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Categories.class)
 @IncludeCategory({Funcional.class, Excecao.class}) 
 @SuiteClasses({ 
-    tstAplicarPartidaNaTabela.class, 
+    TstAplicarPartidaNaTabela.class, 
     TstExceptionRodada.class,
     TstJogoRepetidoRodada.class,
-    tstPartidaExcecao.class, 
-    tstPartidaResultado.class,
+    TstPartidaExcecao.class, 
+    TstPartidaResultado.class,
     TstPontuacao.class,
     TstSorteioRodada.class,
-    tstRanking.class,
     TstRankingPorRodada.class
 })
 public class AllTests { 

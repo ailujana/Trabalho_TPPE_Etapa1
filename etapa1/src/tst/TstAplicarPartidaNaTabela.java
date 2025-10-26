@@ -10,7 +10,7 @@ import app.Time;
 import exceptions.NomeVazioException;
 
 @Category(Funcional.class)
-public class tstAplicarPartidaNaTabela {
+public class TstAplicarPartidaNaTabela {
 
   private static class FakeTabela {
     String mand, vist; int gm, gv; int chamadas;

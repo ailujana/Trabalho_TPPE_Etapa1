@@ -9,6 +9,8 @@ public class Time {
     private int nVitorias;
     private int golsMarcados;
     private int golsSofridos;
+    private int qtdCartoesAmarelos;
+    private int qtdCartoesVermelhos;
 
     public Time(String nome) throws NomeVazioException {
         if (nome == null || nome.isEmpty()) {
@@ -105,6 +107,21 @@ public class Time {
             throw new NumeroInvalidoException();
         }
         this.golsSofridos = golsSofridos;
+    }
+
+    public void registrarCartaoAmarelo() {
+        this.qtdCartoesAmarelos++;
+    }
+    public void registrarCartaoVermelho() {
+        this.qtdCartoesVermelhos++;
+    }
+
+    public int getCartoesAmarelos() {
+        return this.qtdCartoesAmarelos;
+    }
+
+    public int getCartoesVermelhos() {
+        return this.qtdCartoesVermelhos;
     }
 
     public int getSaldoGols() {

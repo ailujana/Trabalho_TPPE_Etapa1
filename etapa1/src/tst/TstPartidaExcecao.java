@@ -1,6 +1,5 @@
 package tst;
 
-import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
@@ -10,7 +9,7 @@ import app.Time;
 import exceptions.NomeVazioException;
 
 @Category(Excecao.class)
-public class tstPartidaExcecao {
+public class TstPartidaExcecao {
 
   @Test(expected = NomeVazioException.class)
   public void mandanteNuloOuVazio() throws NomeVazioException {

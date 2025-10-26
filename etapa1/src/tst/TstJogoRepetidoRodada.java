@@ -6,13 +6,11 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 import app.Partida;
 import app.Rodada;
-import app.Time;
 import exceptions.*;
 
 @Category(Excecao.class)
