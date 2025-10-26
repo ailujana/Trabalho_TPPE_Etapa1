@@ -3,13 +3,19 @@
 ## Resumo
 Projeto de TDD para implementação de um sistema de simulação do campeonato brasileiro de futebol, o Brasileirão, com rodadas, partidas, classificação.
 
+## Tecnologias utilizadas
+
+* Java
+* JUnit 4
+* Eclipse IDE
+* 
 ## Conteúdo principal
 
 - src/app — implementação
 - src/exceptions — exceções do projeto
 - src/tst — testes unitários JUnit e suíte AllTests
 
-## O que o projeto faz (visão geral)
+## O que o projeto faz? (visão geral)
 Esta aplicação gerencia o Brasileirão, executando as seguintes funcionalidades principais:
 
 * **Sorteio de Partidas:** Realiza o sorteio dos jogos para compor cada rodada do campeonato.
