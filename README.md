@@ -42,7 +42,7 @@ Os nomes dos integrantes da equipe podem ser encontrados na Tabela 1.
     <td align="center"><a href="http://github.com/ailujana"><img style="border-radius: 50%;" src="http://github.com/ailujana.png" width="100px;" alt=""/><br /><sub><b>Ana Júlia Mendes</b></sub></a><br/>
     <td align="center"><a href="http://github.com/julia-fortunato"><img style="border-radius: 50%;" src="http://github.com/julia-fortunato.png" width="100px;" alt=""/><br /><sub><b>Júlia Fortunato</b></sub></a><br/><a href="Link git" title="Rocketseat"></a></td>
     <td align="center"><a href="https://github.com/luanasoares0901"><img style="border-radius: 50%;" src="https://github.com/luanasoares0901.png" width="100px;" alt=""/><br/><sub><b>Luana Ribeiro</b></sub></a><br/>
-    <td align="center"><a href="http://github.com/Oleari19"><img style="border-radius: 50%;" src="http://github.com/Oleari.png" width="100px;" alt=""/><br><sub><b>Maria Clara Oleari</b></sub></a><br/>
+    <td align="center"><a href="http://github.com/Oleari19"><img style="border-radius: 50%;" src="http://github.com/Oleari19.png" width="100px;" alt=""/><br><sub><b>Maria Clara Oleari</b></sub></a><br/>
   </tr>
 </table>
 
