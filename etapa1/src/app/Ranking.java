@@ -5,6 +5,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import exceptions.NumeroInvalidoException;
+import exceptions.TipoInvalidoException;
+
 public class Ranking {
     private List<Time> classificacao;
     
@@ -80,21 +83,85 @@ public class Ranking {
     }
     
     /**
-     * Atualiza a classificação com base nos resultados das partidas
+     * Atualiza a classificação com base nos resultados de uma lista de partidas (uma rodada).
+     * Mantém: pontos, vitórias, gols pró/contra e saldo; aplica desempate por vitórias.
      */
-    public void atualizarComPartidas(List<Partida> partidas) {
-        for (Partida p : partidas) {
-            if (p.isJogado()) {
-                atualizarTimeComPartida(p.getMandante(), p.getGolsMandante(), p.getGolsVisitante());
-                atualizarTimeComPartida(p.getVisitante(), p.getGolsVisitante(), p.getGolsMandante());
-            }
+    public void aplicarRodada(List<Partida> partidasDaRodada) {
+        if (partidasDaRodada == null) return;
+        for (Partida p : partidasDaRodada) {
+            processarPartida(p);
         }
         ordenarClassificacao();
     }
-    
-    private void atualizarTimeComPartida(Time time, int golsPro, int golsContra) {
-        // Implementação auxiliar para atualizar estatísticas
-        // (assumindo que Time já tem os métodos necessários)
+
+    /**
+     * Recalcula TODA a classificação do zero até a rodada 'numeroRodada' (inclusiva),
+     * usando o calendário completo (lista de rodadas).
+     */
+    public void recomputarAteRodada(List<? extends List<Partida>> calendario, int numeroRodada) {
+        if (calendario == null || numeroRodada <= 0) return;
+        zerarEstatisticasTimes();
+        for (List<Partida> rodada : calendario) {
+            if (rodada.isEmpty()) continue;
+            // Considera o id da partida como número da rodada (ver Partida.getIdRodada())
+            int id = rodada.get(0).getIdRodada();
+            if (id > numeroRodada) continue;
+            aplicarRodada(rodada);
+        }
+        ordenarClassificacao();
+    }
+
+    /**
+     * Compatibilidade: atualiza com uma lista de partidas (não necessariamente agrupadas por rodada).
+     */
+    public void atualizarComPartidas(List<Partida> partidas) {
+        if (partidas == null) return;
+        for (Partida p : partidas) {
+            processarPartida(p);
+        }
+        ordenarClassificacao();
+    }
+
+    private void processarPartida(Partida p) {
+        if (p == null || !p.isJogado()) return;
+        int gm = p.getGolsMandante();
+        int gv = p.getGolsVisitante();
+        Time mand = p.getMandante();
+        Time vist = p.getVisitante();
+
+        try {
+            switch (p.getResultado()) {
+                case VITORIA_MANDANTE:
+                    mand.registrarVitoria(gm, gv);
+                    vist.registrarDerrota(gv, gm);
+                    break;
+                case VITORIA_VISITANTE:
+                    vist.registrarVitoria(gv, gm);
+                    mand.registrarDerrota(gm, gv);
+                    break;
+                case EMPATE:
+                    // gm == gv garantido por Partida.of para partidas jogadas
+                    mand.registrarEmpate(gm);
+                    vist.registrarEmpate(gv);
+                    break;
+            }
+        } catch (TipoInvalidoException | NumeroInvalidoException e) {
+            // Não deve ocorrer, pois Partida valida gols e o fluxo garante coerência com o resultado
+            throw new IllegalStateException("Falha ao aplicar resultado da partida na tabela", e);
+        }
+    }
+
+    private void zerarEstatisticasTimes() {
+        for (Time t : classificacao) {
+            try {
+                t.setPontos(0);
+                t.setnVitorias(0);
+                t.setGolsMarcados(0);
+                t.setGolsSofridos(0);
+            } catch (NumeroInvalidoException e) {
+                throw new IllegalStateException("Falha ao resetar estatísticas do time", e);
+            }
+        }
     }
     
     /**
