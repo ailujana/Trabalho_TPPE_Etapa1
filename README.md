@@ -8,7 +8,7 @@ Projeto de TDD para implementação de um sistema de simulação do campeonato b
 * Java
 * JUnit 4
 * Eclipse IDE
-* 
+  
 ## Conteúdo principal
 
 - src/app — implementação
