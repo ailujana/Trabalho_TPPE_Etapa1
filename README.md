@@ -27,18 +27,26 @@ Esta aplicação gerencia o Brasileirão, executando as seguintes funcionalidade
 ## Diagrama de Classes
 
 <div align="center">
+  <font size="3"><p style="text-align: center"><b>Figura 1:</b> Diagrama de Classes.</p></font>
+</div>
+
+
+<div align="center">
   <img src="Diagrama de Classes.png" alt="Diagrama de Classes" style="max-width:100%;height:auto;" />
+</div>
+
+<div align="center">
   <font size="3"><p style="text-align: center"><b>Autor:</b> <a href="https://github.com/ailujana">Ana Júlia</a>, 2025</p></font>
 </div>
 
-## Diagrama no Lucidchart
+### Diagrama no Lucidchart
 
-[Acesse o diagrama interativo no Lucidchart](https://lucid.app/lucidspark/44e8d0b4-a9a0-47e3-8f2c-3b19c256692c/edit?viewport_loc=-3392%2C-1333%2C5181%2C2377%2C0_0&invitationId=inv_9811db09-efb6-48fd-93e7-b9ed212e6ff3)
+[Acesse o diagrama interativo no Lucidchart.](https://lucid.app/lucidspark/44e8d0b4-a9a0-47e3-8f2c-3b19c256692c/edit?viewport_loc=-3392%2C-1333%2C5181%2C2377%2C0_0&invitationId=inv_9811db09-efb6-48fd-93e7-b9ed212e6ff3)
 
 ### Relacionamentos:
 - Uma Rodada contém várias Partida (1 → *). Cada Partida pertence a uma Rodada.
 - Uma Partida associa dois Time (mandante e visitante). Um Time participa de muitas partidas ao longo do campeonato (Time 2..* ←→ Partida *).
-- Ranking depende dos Time e das Rodada/Partida para construir a classificação 
+- Ranking depende dos Time e das Rodada/Partida para construir a classificação.
 
 
 ## Testes relevantes
