@@ -31,8 +31,9 @@ Esta aplicação gerencia o Brasileirão, executando as seguintes funcionalidade
   <font size="3"><p style="text-align: center"><b>Autor:</b> <a href="https://github.com/ailujana">Ana Júlia</a>, 2025</p></font>
 </div>
 
-### Frame interativo
-<div style="width: 640px; height: 480px; margin: 10px; position: relative;"><iframe allowfullscreen frameborder="0" style="width:640px; height:480px" src="https://lucid.app/documents/embedded/44e8d0b4-a9a0-47e3-8f2c-3b19c256692c" id="93i3m8Qm~rRs"></iframe></div>
+## Diagrama no Lucidchart
+
+[Acesse o diagrama interativo no Lucidchart](https://lucid.app/lucidspark/44e8d0b4-a9a0-47e3-8f2c-3b19c256692c/edit?viewport_loc=-3392%2C-1333%2C5181%2C2377%2C0_0&invitationId=inv_9811db09-efb6-48fd-93e7-b9ed212e6ff3)
 
 ### Relacionamentos:
 - Uma Rodada contém várias Partida (1 → *). Cada Partida pertence a uma Rodada.
