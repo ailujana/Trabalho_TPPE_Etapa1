@@ -24,6 +24,22 @@ Esta aplicação gerencia o Brasileirão, executando as seguintes funcionalidade
 * **Cálculo de Estatísticas:** Processa os resultados de cada partida para calcular o número de vitórias, gols marcados, gols sofridos e o saldo de gols de cada time.
 * **Critério de Desempate:** Aplica o critério de desempate por **número de vitórias** para classificar corretamente times que possuem a mesma pontuação, além de garantir também os outros critérios explicitados no enunciado do Trabalho Prático 1.
 
+## Diagrama de Classes
+
+<div align="center">
+  <img src="Diagrama de Classes.png" alt="Diagrama de Classes" style="max-width:100%;height:auto;" />
+  <font size="3"><p style="text-align: center"><b>Autor:</b> <a href="https://github.com/ailujana">Ana Júlia</a>, 2025</p></font>
+</div>
+
+### Frame interativo
+<div style="width: 640px; height: 480px; margin: 10px; position: relative;"><iframe allowfullscreen frameborder="0" style="width:640px; height:480px" src="https://lucid.app/documents/embedded/44e8d0b4-a9a0-47e3-8f2c-3b19c256692c" id="93i3m8Qm~rRs"></iframe></div>
+
+### Relacionamentos:
+- Uma Rodada contém várias Partida (1 → *). Cada Partida pertence a uma Rodada.
+- Uma Partida associa dois Time (mandante e visitante). Um Time participa de muitas partidas ao longo do campeonato (Time 2..* ←→ Partida *).
+- Ranking depende dos Time e das Rodada/Partida para construir a classificação 
+
+
 ## Testes relevantes
 Testes que verificam as funcionalidades principais solicitadas no Trabalho Prático 1: 
 
