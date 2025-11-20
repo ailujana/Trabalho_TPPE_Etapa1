@@ -6,7 +6,6 @@ import java.util.List;
 public class RecomputacaoAteRodada {
 
 		private Ranking ranking;
-		private int numeroRodada;
 		private ArrayList<ArrayList<Partida>> fonte; 
 		
 		public RecomputacaoAteRodada(Ranking ranking, ArrayList<ArrayList<Partida>> fonte) {
