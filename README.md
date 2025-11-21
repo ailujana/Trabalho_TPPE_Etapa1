@@ -61,7 +61,7 @@ Cabe lembrar que outros testes também foram realizados para verificação das f
 ### Como executar os testes
 - Pelo IDE (como Eclipse, Visual Studio): executar a suíte `tst.AllTests` ou as classes de teste individuais.
 
-## Refatoração realizadas - TP2 
+## Refatorações realizadas - TP2 
 Como solicitadoo, realizamos as seguintes refatorações no TP2:
 
 - Extrair Método: Rodada::gerarRodadasSorteio
