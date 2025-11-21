@@ -121,7 +121,7 @@ public void ordenarClassificacao() {
         }
     }
 
-    private void processarPartida(Partida p) {
+    void processarPartida(Partida p) {
         if (p == null || !p.getPlacar().foiJogado()) return;
         int gm = p.getPlacar().getGolsMandante();
         int gv = p.getPlacar().getGolsVisitante();
