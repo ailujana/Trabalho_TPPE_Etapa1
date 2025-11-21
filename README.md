@@ -1,4 +1,4 @@
-# Trabalho Prático — Etapa 1 (TDD)
+# Trabalho Prático — TPPE
 
 ## Resumo
 Projeto de TDD para implementação de um sistema de simulação do campeonato brasileiro de futebol, o Brasileirão, com rodadas, partidas, classificação.
@@ -49,7 +49,7 @@ Esta aplicação gerencia o Brasileirão, executando as seguintes funcionalidade
 - Ranking depende dos Time e das Rodada/Partida para construir a classificação.
 
 
-## Testes relevantes
+## Testes relevantes - TP1
 Testes que verificam as funcionalidades principais solicitadas no Trabalho Prático 1: 
 
 - tst/TstSorteioRodada.java
@@ -60,6 +60,15 @@ Cabe lembrar que outros testes também foram realizados para verificação das f
 
 ### Como executar os testes
 - Pelo IDE (como Eclipse, Visual Studio): executar a suíte `tst.AllTests` ou as classes de teste individuais.
+
+## Refatoração realizadas - TP2 
+Como solicitadoo, realizamos as seguintes refatorações no TP2:
+
+- Extrair Método: Rodada::gerarRodadasSorteio
+- Substituir Método por Objeto Método: Ranking::recomputarAteRodada
+- Extrair Classe: Partida 
+
+Dessa forma, é possível visualizar todas as refatorações feitas no código fonte desenvolvido pelo grupo. É importante observar que ps testes guiaram essa etapa do trabalho, e após as modificações, todos os testes (que não sofreram alterações) estão sendo bem performados.
 
 ## Equipe
 
