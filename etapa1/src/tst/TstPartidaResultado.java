@@ -11,6 +11,7 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import app.Partida;
+import app.Placar;
 import app.Time;
 import exceptions.NomeVazioException;
 
@@ -44,9 +45,9 @@ public class TstPartidaResultado {
   @Test
   public void testaResultadoEAuxiliares() throws NomeVazioException {
     Partida p = Partida.of(1,  new Time("Flamengo"), new Time("Vasco"), gm, gv);
-    assertEquals(esperado, p.getResultado());
-    assertEquals(empate, p.isEmpate());
-    assertEquals(mandanteVenceu, p.mandanteVenceu());
-    assertEquals(saldo, p.saldoMandante());
+    assertEquals(esperado, p.placar.getResultado());
+    assertEquals(empate, p.placar.isEmpate());
+    assertEquals(mandanteVenceu, p.placar.mandanteVenceu());
+    assertEquals(saldo, p.placar.saldoMandante());
   }
 }
