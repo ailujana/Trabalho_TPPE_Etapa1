@@ -84,7 +84,7 @@ public void ordenarClassificacao() {
         classificacao.add(time);
     }
     
-    private void garantirTimesDaPartida(Partida p) {
+    public void garantirTimesDaPartida(Partida p) {
         if (p == null) return;
         adicionarTime(p.getMandante());
         adicionarTime(p.getVisitante());
@@ -98,39 +98,16 @@ public void ordenarClassificacao() {
         ordenarClassificacao();
     }
 
-
+    // Novo método após a substituição por objeto método (refatorado)
     public void recomputarAteRodada(int numeroRodada) {
-        if (numeroRodada <= 0) return;
-        ArrayList<ArrayList<Partida>> fonte = Rodada.getRodadas(); 
-        if (fonte == null || fonte.isEmpty()) return;
-
-        
-        coletarTimesDasRodadas(); // uso Rodada.getRodadas() internamente
-
-
-        zerarEstatisticasTimes();
-
-        // percorre as rodadas do calendário em ordem e aplica até numeroRodada (inclusive)
-        for (List<Partida> rodada : fonte) {
-            if (rodada == null || rodada.isEmpty()) continue;
-            int idRodada = rodada.get(0).getIdRodada();
-            if (idRodada > numeroRodada) break;
-
-            // aplica somente partidas já jogadas na rodada
-            for (Partida p : rodada) {
-                garantirTimesDaPartida(p);
-                processarPartida(p);
-            }
-
-            // ordena após concluir a rodada para refletir classificação rodada-a-rodada
-            ordenarClassificacao();
-        }
-
-        // ordenação final para consistência
-        ordenarClassificacao();
+    	ArrayList<ArrayList<Partida>> fonteRodadas = Rodada.getRodadas();
+    	
+    	RecomputacaoAteRodada recomputador = new RecomputacaoAteRodada(this, fonteRodadas);
+    	
+    	recomputador.recomputarAteRodada(numeroRodada);
     }
-
     
+
     public void aplicarRodadaPorId(int idRodada) {
         if (idRodada <= 0) return;
         ArrayList<ArrayList<Partida>> rodadas = Rodada.getRodadas(); 
@@ -174,7 +151,7 @@ public void ordenarClassificacao() {
         }
     }
 
-    private void zerarEstatisticasTimes() {
+    public void zerarEstatisticasTimes() {
         for (Time t : classificacao) {
             try {
                 t.setPontos(0);
@@ -188,7 +165,7 @@ public void ordenarClassificacao() {
     }
     
 
-    private void coletarTimesDasRodadas() {
+    public void coletarTimesDasRodadas() {
         ArrayList<ArrayList<Partida>> calendario = Rodada.getRodadas();
         if (calendario == null) return;
         for (ArrayList<Partida> rodada : calendario) {
