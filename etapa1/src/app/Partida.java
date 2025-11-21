@@ -10,9 +10,7 @@ public final class Partida {
   private final int idRodada;
   private final Time mandante;
   private final Time visitante;
-  private final int golsMandante;
-  private final int golsVisitante;
-  private final Status status;
+  public final Placar placar;
 
   private Partida(int idRodada, Time mandante, Time visitante,
                   int golsMandante, int golsVisitante, Status status) {
@@ -36,9 +34,7 @@ public final class Partida {
     this.idRodada = idRodada;
     this.mandante = mandante;
     this.visitante = visitante;
-    this.golsMandante = golsMandante;
-    this.golsVisitante = golsVisitante;
-    this.status = status;
+    this.placar = new Placar(golsMandante, golsVisitante, status);
   }
 
   // Partida já jogada 
@@ -63,51 +59,12 @@ public final class Partida {
 	  return visitante; 
   }
   
-  public int getGolsMandante() {
-	  return golsMandante; 
-  }
-  
-  public int getGolsVisitante() { 
-	  return golsVisitante; 
-  }
-  
-  public Status getStatus() { 
-	  return status; 
-  }
-  
-  public boolean isAgendado() {
-	  return status == Status.AGENDADO;
-  }
-  
-  public boolean isJogado() {
-	  return status == Status.JOGADO;
+  public String chave() {
+    return mandante.getNome() + "->" + visitante.getNome();
   }
 
-  public Resultado getResultado() {
-    garantirJogado("resultado");
-    if (golsMandante > golsVisitante) return Resultado.VITORIA_MANDANTE;
-    if (golsMandante < golsVisitante) return Resultado.VITORIA_VISITANTE;
-    return Resultado.EMPATE;
-  }
-
-  public boolean isEmpate() {
-    garantirJogado("empate");
-    return golsMandante == golsVisitante;
-  }
-
-  public boolean mandanteVenceu() {
-    garantirJogado("mandanteVenceu");
-    return golsMandante > golsVisitante;
-  }
-
-  public boolean visitanteVenceu() {
-    garantirJogado("visitanteVenceu");
-    return golsVisitante > golsMandante;
-  }
-
-  public int saldoMandante() {
-    garantirJogado("saldoMandante");
-    return golsMandante - golsVisitante;
+  public Placar getPlacar(){
+    return placar;
   }
 
   public interface TabelaAdapter {
@@ -115,17 +72,8 @@ public final class Partida {
   }
 
   public void aplicarNaTabela(TabelaAdapter tabela) {
-    garantirJogado("aplicarNaTabela");
-    tabela.registrarPartidaResultado(mandante.getNome(), visitante.getNome(), golsMandante, golsVisitante);
+    placar.garantirJogado("aplicarNaTabela");
+    tabela.registrarPartidaResultado(mandante.getNome(), visitante.getNome(), placar.getGolsMandante(), placar.getGolsVisitante());
   }
 
-  public String chave() {
-    return mandante.getNome() + "->" + visitante.getNome();
-  }
-
-  private void garantirJogado(String metodo) {
-    if (status != Status.JOGADO) {
-      throw new IllegalStateException("Partida ainda não foi jogada: operação '" + metodo + "' indisponível");
-    }
-  }
 }

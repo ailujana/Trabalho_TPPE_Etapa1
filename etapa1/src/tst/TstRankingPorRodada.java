@@ -13,6 +13,7 @@ import app.Partida;
 import app.Ranking;
 import app.Rodada;
 import app.Time;
+import app.Placar;
 import exceptions.NomeVazioException;
 
 @Category(Funcional.class)

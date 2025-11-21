@@ -121,10 +121,10 @@ public void ordenarClassificacao() {
         }
     }
 
-    public void processarPartida(Partida p) {
-        if (p == null || !p.isJogado()) return;
-        int gm = p.getGolsMandante();
-        int gv = p.getGolsVisitante();
+    private void processarPartida(Partida p) {
+        if (p == null || !p.getPlacar().foiJogado()) return;
+        int gm = p.getPlacar().getGolsMandante();
+        int gv = p.getPlacar().getGolsVisitante();
         Time mand = p.getMandante();
         Time vist = p.getVisitante();
 
@@ -132,7 +132,7 @@ public void ordenarClassificacao() {
         garantirTimesDaPartida(p);
 
         try {
-            switch (p.getResultado()) {
+            switch (p.placar.getResultado()) {
                 case VITORIA_MANDANTE:
                     mand.registrarVitoria(gm, gv); // soma 3 pontos, 1 vitória, gols e saldo
                     vist.registrarDerrota(gv, gm); // soma 0 pontos, derrota, gols e saldo
